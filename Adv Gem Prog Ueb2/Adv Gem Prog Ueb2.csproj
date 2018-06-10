@@ -300,7 +300,9 @@
   <ItemGroup>
     <Compile Include="Assets\Black Knight\AnimationEvent.cs" />
     <Compile Include="Assets\Black Knight\demo\UnitControl.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Camera2PersonMain.cs" />
+    <Compile Include="Assets\Scripts\CameraSmoothFollow.cs" />
+    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Black Knight\ReadMe.txt" />
