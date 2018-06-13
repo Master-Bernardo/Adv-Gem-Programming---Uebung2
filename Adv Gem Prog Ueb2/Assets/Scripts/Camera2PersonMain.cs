@@ -21,16 +21,21 @@ public class Camera2PersonMain : MonoBehaviour {
 
     void FixedUpdate()
     {
+        //move the camera
+        Vector3 middle = (target1.position + target2.position) * 0.5f;
+
+
+        Vector3 desiredPosition = new Vector3(middle.x, middle.y, offset);
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        transform.position = smoothedPosition;
+
+
+        //deside if we should switch to splitscreen
         if (Vector2.Distance(target1.position, target2.position)<distanceAbWannSplitscreen) {
             camMain.enabled = true;
             cam1.enabled = false;
             cam2.enabled = false;
-            Vector3 middle = (target1.position + target2.position) * 0.5f;
-
-
-            Vector3 desiredPosition = new Vector3(middle.x, middle.y, offset);
-            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed*Time.deltaTime);
-            transform.position = smoothedPosition;
+           
         }
         else
         {

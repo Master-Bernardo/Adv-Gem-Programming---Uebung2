@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
     //Movement
+    public float maxSpeed;
     public float speed;
     public float jumpForce;
     public Rigidbody2D rb;
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject playerModel;
     public Animator playerAnimator;
     private State state;
+    private State previousState; // for stopping when moving
 
     private enum State
     {
@@ -47,9 +49,10 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update()
     {
+        Debug.Log(state);
         if (Input.GetButtonDown(jump_KEY) && grounded && state!=State.DEAD)
         {
-            state = State.JUMPING;
+            wantToJump = true;
         }
         else if (Input.GetButton(runRight_KEY) && grounded && state != State.DEAD)
         {
@@ -59,7 +62,15 @@ public class PlayerMovement : MonoBehaviour {
         { 
             state = State.MOVINGL;
         }
-        else
+        else if(state == State.DEAD)
+        {
+            //just so we dont change back to idle
+        }
+        else if (Input.GetKey(KeyCode.R))
+        {
+            getDamage(50);
+        }
+        else if(state != State.DEAD)
         {
             state = State.IDLE;
         }
@@ -105,16 +116,19 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate () {
 
+        if (wantToJump)
+        {
+            jump();
+            wantToJump = false;
+            state = State.JUMPING;
+        }
+
         switch (state)
         {
             case State.JUMPING:
-                jump();
                 playerAnimator.SetTrigger("evade_1");
                 break;
-            case State.IDLE:
-                playerAnimator.SetTrigger("idle_1");
-                break;
-            case State.MOVINGR:
+           case State.MOVINGR:
                 moveRight();
                 playerAnimator.SetTrigger("run");
                 playerModel.transform.localScale = new Vector3(1, 1, 1); //turns the player right
@@ -125,6 +139,16 @@ public class PlayerMovement : MonoBehaviour {
                 playerAnimator.SetTrigger("run");
                 playerModel.transform.localScale = new Vector3(-1, 1, 1);
                 break;
+            case State.DEAD:
+                playerAnimator.SetTrigger("death");
+                break;
+            case State.IDLE: // some error here
+                             
+                playerAnimator.ResetTrigger("run");
+                playerAnimator.ResetTrigger("evade_1");
+                playerAnimator.SetTrigger("idle_1");
+                break;
+             
             default:
                 Debug.Log("no state :O");
                 break;
@@ -136,18 +160,18 @@ public class PlayerMovement : MonoBehaviour {
 
     private void jump()
     {
-        rb.AddForce(Vector2.up * jumpForce);
+        rb.AddForce(Vector2.up * jumpForce*1000);
         wantToJump = false;
     }
 
     private void moveRight()
     {
-        rb.AddForce(Vector2.right * speed);
+        if (rb.velocity.magnitude < maxSpeed) rb.AddForce(Vector2.right * speed * 1000);
     }
 
     private void moveLeft()
     {
-        rb.AddForce((-Vector2.right) * speed);
+        if(rb.velocity.magnitude<maxSpeed)rb.AddForce((-Vector2.right) * speed * 1000);
     }
 
     public void getDamage(int damage)
@@ -161,5 +185,22 @@ public class PlayerMovement : MonoBehaviour {
             Debug.Log("dead");
             state = State.DEAD;
         }
+    }
+
+    public void ApplyPhysicsBoost()
+    {
+        maxSpeed *= 2;
+        speed *= 2;
+        jumpForce *= 2;
+        StartCoroutine("GoBackToNormal");
+
+    }
+
+    IEnumerator GoBackToNormal()
+    {
+        yield return new WaitForSeconds(3f);
+        maxSpeed /= 2;
+        speed /= 2;
+        jumpForce /= 2;
     }
 }

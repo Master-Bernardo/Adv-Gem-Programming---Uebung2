@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7181f404f1447c0a7a17b3070b952b, type: 3}
+  m_Name: New SpriteShapeProfile
+  m_EditorClassIdentifier: 
+  m_Angles:
+  - m_Start: -22
+    m_End: 22.5
+    m_Order: 7
+    m_Sprites:
+    - {fileID: 21300000, guid: fab8ab3d51811cf45871644b7c7fbcc6, type: 3}
+    - {fileID: 21300000, guid: c4fbf157b6308054eba5afb39f7b01c7, type: 3}
+  - m_Start: 22.5
+    m_End: 67.5
+    m_Order: 6
+    m_Sprites:
+    - {fileID: 21300000, guid: 2fb708611acecd14ba75056d0c8f0724, type: 3}
+  - m_Start: 67.5
+    m_End: 112.5
+    m_Order: 4
+    m_Sprites:
+    - {fileID: 21300000, guid: f664c6e3e1f617046a3fcfe594cc82b6, type: 3}
+  - m_Start: 112.5
+    m_End: 157.5
+    m_Order: 2
+    m_Sprites:
+    - {fileID: 21300000, guid: cff47ecb021321845b2298aee1439483, type: 3}
+  - m_Start: 157.5
+    m_End: 202.5
+    m_Order: 8
+    m_Sprites:
+    - {fileID: 21300030, guid: b9ee59c33ef836a4aad868aa35d9ff8e, type: 3}
+  - m_Start: -157.5
+    m_End: -112.5
+    m_Order: 1
+    m_Sprites:
+    - {fileID: 21300000, guid: f664c6e3e1f617046a3fcfe594cc82b6, type: 3}
+  - m_Start: -112.5
+    m_End: -67.5
+    m_Order: 3
+    m_Sprites:
+    - {fileID: 21300028, guid: b9ee59c33ef836a4aad868aa35d9ff8e, type: 3}
+  - m_Start: -67.5
+    m_End: -22.5
+    m_Order: 5
+    m_Sprites:
+    - {fileID: 21300030, guid: b9ee59c33ef836a4aad868aa35d9ff8e, type: 3}
+  m_FillTexture: {fileID: 0}
+  m_CornerSprites:
+  - m_CornerType: 0
+    m_Sprites:
+    - {fileID: 0}
+  - m_CornerType: 1
+    m_Sprites:
+    - {fileID: 0}
+  - m_CornerType: 2
+    m_Sprites:
+    - {fileID: 0}
+  - m_CornerType: 3
+    m_Sprites:
+    - {fileID: 0}
+  - m_CornerType: 4
+    m_Sprites:
+    - {fileID: 0}
+  - m_CornerType: 5
+    m_Sprites:
+    - {fileID: 0}
+  - m_CornerType: 6
+    m_Sprites:
+    - {fileID: 0}
+  - m_CornerType: 7
+    m_Sprites:
+    - {fileID: 0}
+  m_FillPixelPerUnit: 200
+  m_BevelSize: 0
+  m_BevelCutoff: 0
+  m_FillOffset: 0.142
+  m_WorldSpaceUV: 0
+  m_UseSpriteBorders: 1

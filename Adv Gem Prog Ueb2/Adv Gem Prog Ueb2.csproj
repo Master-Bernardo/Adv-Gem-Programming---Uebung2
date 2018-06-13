@@ -302,6 +302,9 @@
     <Compile Include="Assets\Black Knight\demo\UnitControl.cs" />
     <Compile Include="Assets\Scripts\Camera2PersonMain.cs" />
     <Compile Include="Assets\Scripts\CameraSmoothFollow.cs" />
+    <Compile Include="Assets\Scripts\Collectible.cs" />
+    <Compile Include="Assets\Scripts\ParallaxEffect.cs" />
+    <Compile Include="Assets\Scripts\ParallaxEffect2.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>
