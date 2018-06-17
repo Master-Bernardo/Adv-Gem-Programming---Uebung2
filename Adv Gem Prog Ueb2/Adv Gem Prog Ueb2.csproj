@@ -328,11 +328,12 @@
     <Compile Include="Assets\Scripts\Camera2PersonMain.cs" />
     <Compile Include="Assets\Scripts\CameraSmoothFollow.cs" />
     <Compile Include="Assets\Scripts\Collectible.cs" />
-    <Compile Include="Assets\Scripts\ParallaxEffect.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\ParallaxEffect2.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\ProjectileOld.cs" />
+    <Compile Include="Assets\Scripts\UIController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\Benito4747\AppData\Local\Unity\cache\packages\packages.unity.com\com.unity.2d.spriteshape@1.0.10-preview.2\Editor\Resources\Shaders\Sprites-Inspector.shader" />

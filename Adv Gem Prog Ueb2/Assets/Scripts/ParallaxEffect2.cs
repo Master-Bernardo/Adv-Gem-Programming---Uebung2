@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ParallaxEffect2 : MonoBehaviour {
 
-    public float speed;  //- when something is nearer than the player, positive when something is farer
+    [SerializeField]
+    [Tooltip("when something is nearer than the player its negative, its positive when something is farer")]
+    private float speed;  //- 
 
-    public Transform mainCam;
+    [SerializeField]
+    private Transform mainCam;
     private float previousCamPosX;
 
     // Use this for initialization

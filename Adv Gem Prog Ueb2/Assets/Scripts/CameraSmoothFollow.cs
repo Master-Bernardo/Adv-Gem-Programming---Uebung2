@@ -2,10 +2,12 @@
 
 public class CameraSmoothFollow : MonoBehaviour {
 
-    public Transform target;
-    public float smoothSpeed ;  // the higher, the faster the camera will follow
+    private Transform target;
+    [SerializeField]
+    private float smoothSpeed ;  // the higher, the faster the camera will follow
     private float offset = -1f;
-    public float offsetY;
+    [SerializeField]
+    private float offsetY;
 
     void Setup()
     {
@@ -19,5 +21,10 @@ public class CameraSmoothFollow : MonoBehaviour {
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed*Time.deltaTime);
             transform.position = smoothedPosition;
 
+    }
+
+    public void SetTarget(GameObject _target)
+    {
+        target = _target.transform;
     }
 }

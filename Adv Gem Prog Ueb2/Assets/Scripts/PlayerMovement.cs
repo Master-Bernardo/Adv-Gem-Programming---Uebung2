@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    //Input Keys
+    public int playerNumber;
+
+    //Keys
+    [Space(10)]
+    [Header("Keys")]
     public string jump_KEY;
     public string runLeft_KEY;
     public string runRight_KEY;
@@ -13,9 +17,13 @@ public class PlayerMovement : MonoBehaviour {
     public string steerAimLeft_KEY;
     public string steerAimRight_KEY;
 
-    //Movement
+    //Movemetn
+    [Space(10)]
+    [Header("Movement Values")]
     public float maxSpeed;
+    [Tooltip("Speed with which we accelerate to the sides")]
     public float movementForce;
+    [Tooltip("Speed with which we accelerate upwards")]
     public float jumpForce;
     public Rigidbody2D rb;
 
@@ -26,31 +34,39 @@ public class PlayerMovement : MonoBehaviour {
     private float lastVelocity;
 
     //Gameplay
+    [Space(10)]
+    [Header("Gameplay")]
     private int currentHealth = 100;
     public int maxHealth = 100;
-    public RectTransform healthbar;
 
     public int maxManna = 100;
     public float currentManna = 50;
     public float mannaRegeneration = 20f;
-    public RectTransform mannabar;
 
+    [Space(10)]
+    [Tooltip("how much force is needed to give FallDamage")]
+    [Range(6,60)]
     public int demageBreakpoint = 24;//ab wieviel Kraft bekommt man Falldamage? 24 sollte gut sein
 
     //basic attack
+    [Space(10)]
+    [Header("Basic Attack")]
     public GameObject basicProjectilePrefab;
     public int basicAttackMannaCost = 12;
 
     //aimer
+    [Space(10)]
+    [Header("Aimer")]
     public GameObject aimObject; //has a aparticle system as children
     public float aimerRotationSpeed = 20f;
     public float aimerRotationLimit = 85f;
     private float timeSinceNodAimerKeyWasPressed = 0f;
     public float timeAfterWhichAimerDissapears = 2f;
-    private bool wasRotatetRightBefore = true;
 
 
     //Appearance
+    [Space(10)]
+    [Header("appearance")]
     public GameObject playerModel;
     public Animator playerAnimator;
     private State state;
@@ -164,6 +180,9 @@ public class PlayerMovement : MonoBehaviour {
             {
                 GetDamage(50);
             }
+        }else
+        {
+            GameManager.Instance.playerDied(playerNumber);
         }
         lastVelocity = rb.velocity.magnitude;
 
@@ -258,12 +277,12 @@ public class PlayerMovement : MonoBehaviour {
     private void UpdateManna()
     {
         currentManna = Mathf.Clamp(currentManna + mannaRegeneration * Time.deltaTime, 0f, (float)maxManna);
-        mannabar.sizeDelta = new Vector2(currentManna, mannabar.sizeDelta.y);
+        UIController.Instance.UpdateMannaBar(playerNumber, (int)currentManna);
     }
     private void UpdateHealth()
     {
         if (currentHealth > maxHealth) currentHealth = maxHealth;
-        healthbar.sizeDelta = new Vector2(currentHealth, healthbar.sizeDelta.y);
+        UIController.Instance.UpdateHealthBar(playerNumber, (int)currentHealth);
     }
 
 
@@ -364,10 +383,12 @@ public class PlayerMovement : MonoBehaviour {
     public void RegenerateManna(int manna)
     {
         currentManna += manna;
+        playerAnimator.SetTrigger("getPowerUp");
     }
 
     public void RegenerateHealth(int health)
     {
         currentHealth += health;
+        playerAnimator.SetTrigger("getPowerUp");
     }
 }

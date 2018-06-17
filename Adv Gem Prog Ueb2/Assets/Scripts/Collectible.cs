@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour {
 
-    public int size = 20;// for manna or health potions
-    public Type type;
+    [SerializeField]
+    private int size = 20;// for manna or health potions
+    [SerializeField]
+    private Type type;
 
-    public enum Type
+    private enum Type
     {
         PHYSICS,
         HEALTH,

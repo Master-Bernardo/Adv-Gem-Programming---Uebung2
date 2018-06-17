@@ -2,18 +2,27 @@
 
 public class Camera2PersonMain : MonoBehaviour {
 
-    public Transform target1;
-    public Transform target2;
-    public float smoothSpeed ;  // the higher, the faster the camera will follow
+
+    private Transform target1;
+    private Transform target2;
+    [SerializeField]
+    [Tooltip("the higher, the faster the camera will follow")]
+    private float smoothSpeed ;
     private float offset = -1f;
-    public float offsetY;
+    [SerializeField]
+    private float offsetY;
+    [SerializeField]
+    private Camera camMain;
 
-    //splitscreen
-    public Camera cam1;
-    public Camera cam2;
-    public Camera camMain;
+    [Space(20)]
+    [Header("SplitscreenCams")]
+    [SerializeField]
+    private Camera cam1;
+    [SerializeField]
+    private Camera cam2;
 
-    public float distanceAbWannSplitscreen = 15f;
+    [SerializeField]
+    private float distanceAbWannSplitscreen = 15f;
 
     void Setup()
     {
@@ -61,5 +70,17 @@ public class Camera2PersonMain : MonoBehaviour {
 
         }
 
+    }
+
+    public void SetPlayer1Cam(GameObject player1Camera, GameObject currentPlayer1Object)
+    {
+        target1 = currentPlayer1Object.transform;
+        cam1.GetComponent<CameraSmoothFollow>().SetTarget(currentPlayer1Object);
+    }
+
+    public void SetPlayer2Cam(GameObject player2Camera, GameObject currentPlayer2Object)
+    {
+        target2 = currentPlayer2Object.transform;
+        cam2.GetComponent<CameraSmoothFollow>().SetTarget(currentPlayer2Object);
     }
 }
