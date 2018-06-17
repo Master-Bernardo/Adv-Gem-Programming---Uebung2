@@ -1,0 +1,19 @@
+2 player fight against each other in a wizards duel
+
+the first player with 3 wins wins the game, hit t to restart
+
+Movement:
+
+player1:
+w - jump
+a - move left
+d - move right
+q and e - rotate your aim
+f - fire your magic projectile 
+
+player2:
+arrow up - jump
+arrow left - move left
+arrow right - move right
+i and p - rotate your aim
+o - fire your magic projectile 
