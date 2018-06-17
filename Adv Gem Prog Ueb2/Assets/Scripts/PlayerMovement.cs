@@ -9,34 +9,57 @@ public class PlayerMovement : MonoBehaviour {
     public string runLeft_KEY;
     public string runRight_KEY;
 
+    public string attack_a_KEY;
+    public string steerAimLeft_KEY;
+    public string steerAimRight_KEY;
 
     //Movement
     public float maxSpeed;
-    public float speed;
+    public float movementForce;
     public float jumpForce;
     public Rigidbody2D rb;
 
     private bool wantToJump = false;
-    private bool grounded = false;
+    private bool moveR = false;
+    private bool moveL = false;
+    private bool grounded = true;
     private float lastVelocity;
 
     //Gameplay
-    public int currentHealth;
+    private int currentHealth = 100;
+    public int maxHealth = 100;
     public RectTransform healthbar;
+
+    public int maxManna = 100;
+    public float currentManna = 50;
+    public float mannaRegeneration = 20f;
+    public RectTransform mannabar;
+
     public int demageBreakpoint = 24;//ab wieviel Kraft bekommt man Falldamage? 24 sollte gut sein
+
+    //basic attack
+    public GameObject basicProjectilePrefab;
+    public int basicAttackMannaCost = 12;
+
+    //aimer
+    public GameObject aimObject; //has a aparticle system as children
+    public float aimerRotationSpeed = 20f;
+    public float aimerRotationLimit = 85f;
+    private float timeSinceNodAimerKeyWasPressed = 0f;
+    public float timeAfterWhichAimerDissapears = 2f;
+    private bool wasRotatetRightBefore = true;
+
 
     //Appearance
     public GameObject playerModel;
     public Animator playerAnimator;
     private State state;
-    private State previousState; // for stopping when moving
+    //private State previousState; // for stopping when moving
 
     private enum State
     {
         IDLE,
-        JUMPING,
-        MOVINGR,
-        MOVINGL,
+        STUNNED,
         DEAD,
     }
 
@@ -49,32 +72,99 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update()
     {
-        Debug.Log(state);
-        if (Input.GetButtonDown(jump_KEY) && grounded && state!=State.DEAD)
-        {
-            wantToJump = true;
-        }
-        else if (Input.GetButton(runRight_KEY) && grounded && state != State.DEAD)
-        {
-            state = State.MOVINGR; 
-        }
-        else if (Input.GetButton(runLeft_KEY) && grounded && state != State.DEAD)
-        { 
-            state = State.MOVINGL;
-        }
-        else if(state == State.DEAD)
-        {
-            //just so we dont change back to idle
-        }
-        else if (Input.GetKey(KeyCode.R))
-        {
-            getDamage(50);
-        }
-        else if(state != State.DEAD)
-        {
-            state = State.IDLE;
-        }
+        UpdateManna();
+        UpdateHealth();
 
+
+        if (state != State.DEAD)
+        {
+
+            if (!grounded)
+            {
+                playerAnimator.SetBool("isInAir", true);
+            }
+            else
+            {
+                playerAnimator.SetBool("isInAir", false);
+            }
+
+            //get KEy inputs for movement and Gameplay
+            if (Input.GetButtonDown(jump_KEY) && grounded)
+            {
+                wantToJump = true;
+            }
+            else if (Input.GetButton(runRight_KEY) && grounded)
+            {
+                moveR = true;
+                playerAnimator.SetBool("isRunning", true);
+                transform.localScale = new Vector3(1, 1, 1); //turns the player right
+            }
+            else if (Input.GetButton(runLeft_KEY) && grounded)
+            {
+                moveL = true;
+                playerAnimator.SetBool("isRunning", true);
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                playerAnimator.SetBool("isRunning", false);
+            }
+
+            //Check facing for aimer object
+
+            //check facing
+            /*if (playerModel.transform.localScale == new Vector3(1, 1, 1))
+            {
+                aimObject.transform.position = transform.position + new Vector3(1f, 1.5f, 0f);
+                aimObject.transform.localScale = new Vector3(1f, 1f, 1f);
+                //aimObject.transform.eulerAngles = new Vector3(0f, 0f, 0f); 
+                //Debug.Log(aimObject.transform.localEulerAngles);
+            }
+            else
+            {
+                aimObject.transform.position = transform.position + new Vector3(-1f, 1.5f, 0f);
+                aimObject.transform.localScale = new Vector3(-1f, 1f, 1f);
+                //aimObject.transform.eulerAngles = new Vector3(0f, 0f, 180f);
+               // Debug.Log(aimObject.transform.localEulerAngles);
+            }*/
+
+            //Attack and aiming
+            if (Input.GetButtonDown(attack_a_KEY)&&currentManna>basicAttackMannaCost)
+            {
+                playerAnimator.SetTrigger("castSpell");
+                currentManna -= basicAttackMannaCost;
+                AttackA();
+            }
+
+            //Debug.Log(aimObject.transform.rotation.eulerAngles);
+            if (Input.GetButton(steerAimLeft_KEY))
+            {
+                if (transform.localScale == new Vector3(1, 1, 1)) AimLeft();
+                else AimRight();
+
+                timeSinceNodAimerKeyWasPressed = 0f;
+            }
+            else if (Input.GetButton(steerAimRight_KEY))
+            {
+                if(transform.localScale == new Vector3(1, 1, 1)) AimRight();
+                else AimLeft();
+                timeSinceNodAimerKeyWasPressed = 0f;
+            }
+            else
+            {
+                timeSinceNodAimerKeyWasPressed += Time.deltaTime;
+                if (timeSinceNodAimerKeyWasPressed > timeAfterWhichAimerDissapears)
+                {
+                    HideAimer();
+                }
+            }
+
+            //for Debugging
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                GetDamage(50);
+            }
+        }
         lastVelocity = rb.velocity.magnitude;
 
 
@@ -87,8 +177,7 @@ public class PlayerMovement : MonoBehaviour {
         if(collision.transform.tag == "Environment" || collision.transform.tag == "Player")
         {
             grounded = true;
-         
-           
+ 
         }
     }
 
@@ -98,8 +187,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (lastVelocity > demageBreakpoint)
             {
-                Debug.Log("demage taken ");
-                getDamage((int)lastVelocity / 1);
+                GetDamage((int)lastVelocity / 1);
 
             }
         }
@@ -120,42 +208,18 @@ public class PlayerMovement : MonoBehaviour {
         {
             jump();
             wantToJump = false;
-            state = State.JUMPING;
         }
-
-        switch (state)
+        else if (moveR)
         {
-            case State.JUMPING:
-                playerAnimator.SetTrigger("evade_1");
-                break;
-           case State.MOVINGR:
-                moveRight();
-                playerAnimator.SetTrigger("run");
-                playerModel.transform.localScale = new Vector3(1, 1, 1); //turns the player right
-                break;
-            case State.MOVINGL:
-                moveLeft();
-                Debug.Log("movingLeft");
-                playerAnimator.SetTrigger("run");
-                playerModel.transform.localScale = new Vector3(-1, 1, 1);
-                break;
-            case State.DEAD:
-                playerAnimator.SetTrigger("death");
-                break;
-            case State.IDLE: // some error here
-                             
-                playerAnimator.ResetTrigger("run");
-                playerAnimator.ResetTrigger("evade_1");
-                playerAnimator.SetTrigger("idle_1");
-                break;
-             
-            default:
-                Debug.Log("no state :O");
-                break;
+            moveRight();
+            moveR = false;
         }
 
-
-        
+        else if (moveL)
+        {
+            moveLeft();
+            moveL = false;
+        }  
     }
 
     private void jump()
@@ -166,41 +230,144 @@ public class PlayerMovement : MonoBehaviour {
 
     private void moveRight()
     {
-        if (rb.velocity.magnitude < maxSpeed) rb.AddForce(Vector2.right * speed * 1000);
+        if (rb.velocity.magnitude < maxSpeed) rb.AddForce(Vector2.right * movementForce * 1000);
     }
 
     private void moveLeft()
     {
-        if(rb.velocity.magnitude<maxSpeed)rb.AddForce((-Vector2.right) * speed * 1000);
+        if(rb.velocity.magnitude<maxSpeed)rb.AddForce((-Vector2.right) * movementForce * 1000);
     }
 
-    public void getDamage(int damage)
+    public void GetDamage(int damage)
 
     {
         currentHealth -= damage;
-        healthbar.sizeDelta = new Vector2(currentHealth, healthbar.sizeDelta.y);
-        Debug.Log(currentHealth);
+        
+        
         if (currentHealth <= 0)
         {
-            Debug.Log("dead");
+            playerAnimator.SetTrigger("Die");
             state = State.DEAD;
+        }else
+        {
+            playerAnimator.SetTrigger("getDamage");
         }
+        
     }
 
-    public void ApplyPhysicsBoost()
+    private void UpdateManna()
     {
-        maxSpeed *= 2;
-        speed *= 2;
-        jumpForce *= 2;
-        StartCoroutine("GoBackToNormal");
-
+        currentManna = Mathf.Clamp(currentManna + mannaRegeneration * Time.deltaTime, 0f, (float)maxManna);
+        mannabar.sizeDelta = new Vector2(currentManna, mannabar.sizeDelta.y);
     }
+    private void UpdateHealth()
+    {
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        healthbar.sizeDelta = new Vector2(currentHealth, healthbar.sizeDelta.y);
+    }
+
 
     IEnumerator GoBackToNormal()
     {
         yield return new WaitForSeconds(3f);
         maxSpeed /= 2;
-        speed /= 2;
+        movementForce /= 2;
         jumpForce /= 2;
+    }
+
+    private void AttackA()
+    {
+        //Instantiate(basicProjectilePrefab, aimObject.transform.position, aimObject.transform.rotation);
+        //Debug.Log(Quaternion.LookRotation(aimObject.transform.GetChild(0).gameObject.transform.forward).eulerAngles);
+        if (transform.localScale == new Vector3(1, 1, 1))
+        {
+            Instantiate(basicProjectilePrefab, aimObject.transform.position, aimObject.transform.rotation);
+            //Debug.Log("Inverse" + Quaternion.Inverse(aimObject.transform.rotation).eulerAngles);
+            //Debug.Log(aimObject.transform.rotation.eulerAngles);
+        }
+        else //Instantiate(basicProjectilePrefab, aimObject.transform.position, Quaternion.Inverse(aimObject.transform.rotation));
+        {
+            Debug.Log(aimObject.transform.rotation.eulerAngles.z);
+            if(aimObject.transform.rotation.eulerAngles.z >= 90)
+            {
+
+                Instantiate(basicProjectilePrefab, aimObject.transform.position, Quaternion.Euler(new Vector3(0f, 0f, aimObject.transform.rotation.eulerAngles.z +180f)));
+            }
+            else
+            {
+                Instantiate(basicProjectilePrefab, aimObject.transform.position, Quaternion.Euler(new Vector3(0f, 0f, aimObject.transform.rotation.eulerAngles.z - 180f)));
+            }
+            //Instantiate(basicProjectilePrefab, aimObject.transform.position, Quaternion.Euler(new Vector3(0f,0f, aimObject.transform.rotation.eulerAngles.z+180f)));
+            //Debug.Log("Inverse" + Quaternion.Inverse(aimObject.transform.rotation).eulerAngles);
+            //Debug.Log(aimObject.transform.rotation.eulerAngles);
+        }
+
+    }
+
+    private void AimLeft()
+    {
+        
+
+        //enable effect
+        aimObject.transform.GetChild(0).gameObject.SetActive(true);
+        //rotate aimer empthy Object
+        aimObject.transform.Rotate(new Vector3(0f, 0f, aimerRotationSpeed * Time.deltaTime));
+        //clamp
+        if (aimObject.transform.localEulerAngles.z < aimerRotationLimit*2)
+        {
+            aimObject.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, Mathf.Clamp(aimObject.transform.localRotation.eulerAngles.z, 0f, aimerRotationLimit)));
+        }else
+        {
+            aimObject.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, Mathf.Clamp(aimObject.transform.localRotation.eulerAngles.z, 360f - aimerRotationLimit, 360f)));
+        }
+        //disable effect after 1 second
+        //StartCoroutine("MakeAimHelperDissapear");
+    }
+
+    private void AimRight()
+    {
+       
+
+        //enable effect
+        aimObject.transform.GetChild(0).gameObject.SetActive(true);
+        //rotate aimer empthy Object
+        aimObject.transform.Rotate(new Vector3(0f, 0f, - aimerRotationSpeed * Time.deltaTime));
+        //clamp
+        if (aimObject.transform.localEulerAngles.z < aimerRotationLimit*2)
+        {
+            aimObject.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, Mathf.Clamp(aimObject.transform.localRotation.eulerAngles.z, 0f, aimerRotationLimit)));
+        }
+        else
+        {
+            aimObject.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, Mathf.Clamp(aimObject.transform.localRotation.eulerAngles.z, 360f - aimerRotationLimit, 360f)));
+        }
+
+        //disable effect after 1 second
+        //StartCoroutine("MakeAimHelperDissapear");
+    }
+
+   private void HideAimer()
+    {
+        aimObject.transform.GetChild(0).gameObject.SetActive(false);
+    }
+
+    public void ApplyPhysicsBoost()
+    {
+        maxSpeed *= 2;
+        movementForce *= 2;
+        jumpForce *= 2;
+        playerAnimator.SetTrigger("getPowerUp");
+        StartCoroutine("GoBackToNormal");
+
+    }
+
+    public void RegenerateManna(int manna)
+    {
+        currentManna += manna;
+    }
+
+    public void RegenerateHealth(int health)
+    {
+        currentHealth += health;
     }
 }

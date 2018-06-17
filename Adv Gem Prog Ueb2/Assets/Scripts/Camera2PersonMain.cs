@@ -6,6 +6,7 @@ public class Camera2PersonMain : MonoBehaviour {
     public Transform target2;
     public float smoothSpeed ;  // the higher, the faster the camera will follow
     private float offset = -1f;
+    public float offsetY;
 
     //splitscreen
     public Camera cam1;
@@ -25,7 +26,7 @@ public class Camera2PersonMain : MonoBehaviour {
         Vector3 middle = (target1.position + target2.position) * 0.5f;
 
 
-        Vector3 desiredPosition = new Vector3(middle.x, middle.y, offset);
+        Vector3 desiredPosition = new Vector3(middle.x, middle.y + offsetY, offset);
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
         transform.position = smoothedPosition;
 

@@ -250,6 +250,9 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.1.1f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>C:/Users/Benito4747/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.2d.common@1.0.9-preview.2/Tests/EditorTests/Lib/NSubstitute/NSubstitute.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/Benito4747/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
@@ -288,6 +291,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="com.unity.2d.spriteshape.Editor.csproj">
+      <Project>{38DE2F6D-16E0-DC73-F995-41A9334C1BB5}</Project>
+      <Name>com.unity.2d.spriteshape.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.StandardEvents.csproj">
       <Project>{6800202F-4402-D405-F8CB-03DC7BD78B92}</Project>
       <Name>UnityEditor.StandardEvents</Name>
@@ -296,19 +303,39 @@
       <Project>{6877705C-FBD9-0C4F-5AFB-6FB431E5D39D}</Project>
       <Name>Unity.PackageManagerUI.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.InternalAPIEngineBridge.001.csproj">
+      <Project>{569BEDA1-1A48-C20A-F481-9D86637B1749}</Project>
+      <Name>Unity.InternalAPIEngineBridge.001</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.unity.2d.common.Runtime.csproj">
+      <Project>{8AF49F05-69F5-C7DF-381A-FB2860C3B729}</Project>
+      <Name>com.unity.2d.common.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.unity.2d.spriteshape.Runtime.csproj">
+      <Project>{855542ED-D986-0714-42B5-739B9C10C7C2}</Project>
+      <Name>com.unity.2d.spriteshape.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.unity.2d.common.Editor.csproj">
+      <Project>{04FBEBA7-7F8B-7514-DD70-28A8BB18CAE0}</Project>
+      <Name>com.unity.2d.common.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.InternalAPIEditorBridge.001.csproj">
+      <Project>{098A6949-2B23-032F-1E56-89CC7C397C89}</Project>
+      <Name>Unity.InternalAPIEditorBridge.001</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Black Knight\AnimationEvent.cs" />
-    <Compile Include="Assets\Black Knight\demo\UnitControl.cs" />
     <Compile Include="Assets\Scripts\Camera2PersonMain.cs" />
     <Compile Include="Assets\Scripts\CameraSmoothFollow.cs" />
     <Compile Include="Assets\Scripts\Collectible.cs" />
     <Compile Include="Assets\Scripts\ParallaxEffect.cs" />
     <Compile Include="Assets\Scripts\ParallaxEffect2.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\ProjectileOld.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Black Knight\ReadMe.txt" />
+    <None Include="C:\Users\Benito4747\AppData\Local\Unity\cache\packages\packages.unity.com\com.unity.2d.spriteshape@1.0.10-preview.2\Editor\Resources\Shaders\Sprites-Inspector.shader" />
     <None Include="C:\Users\Benito4747\AppData\Local\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.8.8\Editor\Resources\Styles\Main_Dark.uss" />
     <None Include="C:\Users\Benito4747\AppData\Local\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.8.8\Editor\Resources\Styles\Main_Light.uss" />
     <None Include="C:\Users\Benito4747\AppData\Local\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.8.8\Editor\Resources\Templates\Alert.uxml" />
