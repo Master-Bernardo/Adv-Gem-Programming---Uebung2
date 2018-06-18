@@ -16,6 +16,7 @@ public class Collectible : MonoBehaviour {
         MANNA,
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Player")
@@ -31,7 +32,6 @@ public class Collectible : MonoBehaviour {
                     collision.gameObject.GetComponent<PlayerMovement>().RegenerateManna(size);
                     break;
             }
-            
             Destroy(gameObject);
         }
     }

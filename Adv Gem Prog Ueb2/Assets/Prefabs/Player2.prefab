@@ -337,8 +337,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1035650269481738}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.368847, y: 5.368661, z: -0.04123618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4959551194489912}
@@ -474,8 +474,8 @@ MonoBehaviour:
   steerAimLeft_KEY: steerAimLeft2
   steerAimRight_KEY: steerAimRight2
   maxSpeed: 8
-  movementForce: 20
-  jumpForce: 70
+  movementForce: 15
+  jumpForce: 60
   rb: {fileID: 50052710589726718}
   maxHealth: 100
   maxManna: 100
@@ -491,6 +491,13 @@ MonoBehaviour:
   timeAfterWhichAimerDissapears: 0.7
   playerModel: {fileID: 1389512177906358}
   playerAnimator: {fileID: 95497265521116002}
+  dieSound: {fileID: 8300000, guid: 0c28f5df24ba9ab4591fc79878ec069c, type: 3}
+  damageSound: {fileID: 8300000, guid: 3e274c0b469c1ef41ab6e5eacc6a1ae5, type: 3}
+  jumpSound:
+  - {fileID: 8300000, guid: e04b1513a429efa4ca375479d1f6749a, type: 3}
+  - {fileID: 8300000, guid: 1f26c99aa5c39c7469df09a9bea1b7f4, type: 3}
+  - {fileID: 8300000, guid: d5c944a24e6664f4584e5ff9f8dbf5a4, type: 3}
+  drinkPotionSound: {fileID: 8300000, guid: 65becd63296c2554ca5c7aca9fd9611d, type: 3}
 --- !u!198 &198886607541507938
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -570,7 +577,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.5
       minScalar: 3
       maxCurve:
         serializedVersion: 2
@@ -739,7 +746,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
+      scalar: 0.5
       minScalar: 0.0025
       maxCurve:
         serializedVersion: 2

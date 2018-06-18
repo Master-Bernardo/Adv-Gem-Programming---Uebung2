@@ -128,6 +128,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 1648946245838256, guid: 9675410e73b06624fb2413493a30f854,
     type: 2}
   trace: {fileID: 1357929918107290}
+  spellSound: {fileID: 8300000, guid: cdf22480c074253439f63bd7b8fa79e8, type: 3}
 --- !u!198 &198119154527715738
 ParticleSystem:
   m_ObjectHideFlags: 1

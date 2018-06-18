@@ -28,6 +28,18 @@ public class GameManager : MonoBehaviour {
     private int player1Points = 0;
     private int player2Points = 0;
 
+    //sound 
+    [Space(10)]
+    [Header("Sound")]
+    [SerializeField]
+    private AudioClip roundEndsSound;
+    [SerializeField]
+    private AudioClip winGameSound;
+    [SerializeField]
+    private AudioClip roundStartsSound;
+
+    private AudioSource audioSource;
+
     public void Awake() // wir setzen sicher dass es immer existier aber immer nur eins
     {
         if (Instance != null)
@@ -38,6 +50,7 @@ public class GameManager : MonoBehaviour {
         {
             Instance = this;
         }
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     // Use this for initialization
@@ -69,6 +82,9 @@ public class GameManager : MonoBehaviour {
         mainCamera.GetComponent<Camera2PersonMain>().SetPlayer2Cam(player1Camera,currentPlayer2Object);
 
         UIController.Instance.RoundStart();
+
+        audioSource.clip = roundStartsSound;
+        audioSource.Play();
     }
 
     private void EndRound()
@@ -99,18 +115,27 @@ public class GameManager : MonoBehaviour {
 
 
         //Make Enumerator to beginn next Round after 5 Seconds
-        if (player1Points < 3 && player2Points < 3) StartCoroutine("BeginnRoundDelayed");
+        if (player1Points < 3 && player2Points < 3)
+        {
+            StartCoroutine("BeginnRoundDelayed");
+            audioSource.clip = roundEndsSound;
+            audioSource.Play();
+        }
         else
         {
             state = State.GAMEOVER;
             if (player1Points == 3) UIController.Instance.PlayerWinsGame(1);
             if (player2Points == 3) UIController.Instance.PlayerWinsGame(2);
+            audioSource.clip = winGameSound;
+            audioSource.Play();
         }
+
+      
     }
 
     IEnumerator BeginnRoundDelayed()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4.5f);
         BeginnRound();
     }
 

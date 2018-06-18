@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 public class Projectile : MonoBehaviour {
 
@@ -10,9 +11,24 @@ public class Projectile : MonoBehaviour {
     public GameObject explosionPrefab;
     public GameObject trace;
 
+    [SerializeField]
+    private AudioClip spellSound;
+    private AudioSource audioSource;
+
+    void Awake()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+    }
+    private void Start()
+    {
+        audioSource.clip = spellSound;
+        audioSource.Play();
+    }
+
     private void FixedUpdate()
     {
-        if(rb.velocity.magnitude<maxSpeed) rb.AddForce(transform.right *speed);
+       
+        if (rb.velocity.magnitude<maxSpeed) rb.AddForce(transform.right *speed);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

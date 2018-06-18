@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour {
     public int maxManna = 100;
     public float currentManna = 50;
     public float mannaRegeneration = 20f;
+    private bool physicsBoostActive = false;
 
     [Space(10)]
     [Tooltip("how much force is needed to give FallDamage")]
@@ -66,11 +68,25 @@ public class PlayerMovement : MonoBehaviour {
 
     //Appearance
     [Space(10)]
-    [Header("appearance")]
+    [Header("Appearance")]
     public GameObject playerModel;
     public Animator playerAnimator;
     private State state;
     //private State previousState; // for stopping when moving
+
+    //sound 
+    [Space(10)]
+    [Header("Sound")]
+    [SerializeField]
+    private AudioClip dieSound;
+    [SerializeField]
+    private AudioClip damageSound;
+    [SerializeField]
+    private AudioClip[] jumpSound;
+    [SerializeField]
+    private AudioClip drinkPotionSound;
+
+    private AudioSource audioSource;
 
     private enum State
     {
@@ -79,9 +95,10 @@ public class PlayerMovement : MonoBehaviour {
         DEAD,
     }
 
-    void Setup()
+    void Awake()
     {
         state = State.IDLE;
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
   
@@ -182,6 +199,7 @@ public class PlayerMovement : MonoBehaviour {
             }
         }else
         {
+            
             GameManager.Instance.playerDied(playerNumber);
         }
         lastVelocity = rb.velocity.magnitude;
@@ -200,6 +218,17 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    //for the wind objects
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        
+        if (collision.transform.tag == "WindsBlock")
+        {
+            grounded = true;
+
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Environment")
@@ -209,6 +238,11 @@ public class PlayerMovement : MonoBehaviour {
                 GetDamage((int)lastVelocity / 1);
 
             }
+        }
+        
+        if (collision.transform.tag == "Player" && physicsBoostActive)
+        {
+            collision.gameObject.GetComponent<PlayerMovement>().GetDamage(30);
         }
     }
 
@@ -225,34 +259,36 @@ public class PlayerMovement : MonoBehaviour {
 
         if (wantToJump)
         {
-            jump();
+            Jump();
             wantToJump = false;
         }
         else if (moveR)
         {
-            moveRight();
+            MoveRight();
             moveR = false;
         }
 
         else if (moveL)
         {
-            moveLeft();
+            MoveLeft();
             moveL = false;
         }  
     }
 
-    private void jump()
+    private void Jump()
     {
+        audioSource.clip = jumpSound[Random.Range(0, jumpSound.Length)];
+        audioSource.Play();
         rb.AddForce(Vector2.up * jumpForce*1000);
         wantToJump = false;
     }
 
-    private void moveRight()
+    private void MoveRight()
     {
         if (rb.velocity.magnitude < maxSpeed) rb.AddForce(Vector2.right * movementForce * 1000);
     }
 
-    private void moveLeft()
+    private void MoveLeft()
     {
         if(rb.velocity.magnitude<maxSpeed)rb.AddForce((-Vector2.right) * movementForce * 1000);
     }
@@ -267,9 +303,14 @@ public class PlayerMovement : MonoBehaviour {
         {
             playerAnimator.SetTrigger("Die");
             state = State.DEAD;
-        }else
+            audioSource.clip = dieSound;
+            audioSource.Play();
+        }
+        else
         {
             playerAnimator.SetTrigger("getDamage");
+            audioSource.clip = damageSound;
+            audioSource.Play();
         }
         
     }
@@ -285,14 +326,6 @@ public class PlayerMovement : MonoBehaviour {
         UIController.Instance.UpdateHealthBar(playerNumber, (int)currentHealth);
     }
 
-
-    IEnumerator GoBackToNormal()
-    {
-        yield return new WaitForSeconds(3f);
-        maxSpeed /= 2;
-        movementForce /= 2;
-        jumpForce /= 2;
-    }
 
     private void AttackA()
     {
@@ -372,22 +405,35 @@ public class PlayerMovement : MonoBehaviour {
 
     public void ApplyPhysicsBoost()
     {
+        audioSource.clip = drinkPotionSound;
+        audioSource.Play();
         maxSpeed *= 2;
         movementForce *= 2;
-        jumpForce *= 2;
         playerAnimator.SetTrigger("getPowerUp");
         StartCoroutine("GoBackToNormal");
+        physicsBoostActive = true;
 
+    }
+    IEnumerator GoBackToNormal()
+    {
+        yield return new WaitForSeconds(7f);
+        maxSpeed /= 2;
+        movementForce /= 2;
+        physicsBoostActive = false;
     }
 
     public void RegenerateManna(int manna)
     {
+        audioSource.clip = drinkPotionSound;
+        audioSource.Play();
         currentManna += manna;
         playerAnimator.SetTrigger("getPowerUp");
     }
 
     public void RegenerateHealth(int health)
     {
+        audioSource.clip = drinkPotionSound;
+        audioSource.Play();
         currentHealth += health;
         playerAnimator.SetTrigger("getPowerUp");
     }
