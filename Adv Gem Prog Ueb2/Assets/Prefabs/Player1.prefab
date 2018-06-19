@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4525615682825876}
   - component: {fileID: 212256461423147598}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Unterarm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4913509031201944}
   - component: {fileID: 212228145978373472}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bauch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4568760897485680}
   - component: {fileID: 212362116384486876}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Kopf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4995828085380528}
   - component: {fileID: 212667017829789868}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Oberarm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4598211155290546}
   - component: {fileID: 212399527104243666}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Oberarm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4422676619745920}
   - component: {fileID: 212077780665612712}
   - component: {fileID: 95527160245556270}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WizardModel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4173685722142046}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ModelResizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4970506413194292}
   - component: {fileID: 212203318118677464}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4841536024926700}
   - component: {fileID: 212197090838359152}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Unterarm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4093608448190026}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: aimerObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 4946205462704298}
   - component: {fileID: 198940577042576690}
   - component: {fileID: 199481324257046670}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AimerParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 50812068345844216}
   - component: {fileID: 114998695688332346}
   - component: {fileID: 70387337511781488}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4320935218571026}
   - component: {fileID: 212124683364701734}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Kragen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1651808373878844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0.5, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4946205462704298}
@@ -488,7 +488,7 @@ MonoBehaviour:
   aimObject: {fileID: 1651808373878844}
   aimerRotationSpeed: 300
   aimerRotationLimit: 85
-  timeAfterWhichAimerDissapears: 0.7
+  timeAfterWhichAimerDissapears: 3
   playerModel: {fileID: 1437653333150372}
   playerAnimator: {fileID: 95527160245556270}
   dieSound: {fileID: 8300000, guid: 0c28f5df24ba9ab4591fc79878ec069c, type: 3}

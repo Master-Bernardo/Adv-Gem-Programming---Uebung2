@@ -18,10 +18,10 @@ TagManager:
   - Environment
   - Background
   - Collectibles
-  - 
-  - 
-  - 
-  - 
+  - Player1
+  - Player2
+  - Prayer1Projectile
+  - Prayer2Projectile
   - 
   - 
   - 

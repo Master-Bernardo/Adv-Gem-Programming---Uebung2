@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 58356435897113392}
   - component: {fileID: 114384816480400700}
   - component: {fileID: 50234600216958872}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ProjectileIce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4394573945938008}
   - component: {fileID: 198328353673823158}
   - component: {fileID: 199292467258093726}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ProjectileTrace
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 58030582733342504}
   - component: {fileID: 114781718295588832}
   - component: {fileID: 50184381447396466}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ProjectileFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4438286473365460}
   - component: {fileID: 198375494918175156}
   - component: {fileID: 199621685242067658}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ProjectileTrace
   m_TagString: Untagged
   m_Icon: {fileID: 0}

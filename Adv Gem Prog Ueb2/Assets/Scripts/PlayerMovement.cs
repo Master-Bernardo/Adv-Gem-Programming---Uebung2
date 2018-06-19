@@ -132,11 +132,23 @@ public class PlayerMovement : MonoBehaviour {
                 playerAnimator.SetBool("isRunning", true);
                 transform.localScale = new Vector3(1, 1, 1); //turns the player right
             }
+            else if (Input.GetButton(runRight_KEY)) // movement in air
+            {
+                moveR = true;
+                transform.localScale = new Vector3(1, 1, 1); //turns the player right
+                playerAnimator.SetBool("isRunning", false);
+            }
             else if (Input.GetButton(runLeft_KEY) && grounded)
             {
                 moveL = true;
                 playerAnimator.SetBool("isRunning", true);
                 transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else if (Input.GetButton(runLeft_KEY)) // movement in air
+            {
+                moveL = true;
+                transform.localScale = new Vector3(-1, 1, 1); //turns the player right
+                playerAnimator.SetBool("isRunning", false);
             }
             else
             {
@@ -285,12 +297,23 @@ public class PlayerMovement : MonoBehaviour {
 
     private void MoveRight()
     {
-        if (rb.velocity.magnitude < maxSpeed) rb.AddForce(Vector2.right * movementForce * 1000);
+        if (grounded)
+        {
+            if (rb.velocity.magnitude < maxSpeed) rb.AddForce(Vector2.right * movementForce * 1000);
+        }else// in air the movement speed is only half
+        {
+            if (rb.velocity.magnitude < maxSpeed) rb.AddForce(Vector2.right * movementForce/2 * 1000);
+        }
     }
 
     private void MoveLeft()
     {
-        if(rb.velocity.magnitude<maxSpeed)rb.AddForce((-Vector2.right) * movementForce * 1000);
+        if (grounded) {
+            if(rb.velocity.magnitude<maxSpeed)rb.AddForce((-Vector2.right) * movementForce * 1000);
+        }else
+        {
+            if (rb.velocity.magnitude < maxSpeed) rb.AddForce(-Vector2.right * movementForce / 2 * 1000);
+        }
     }
 
     public void GetDamage(int damage)
