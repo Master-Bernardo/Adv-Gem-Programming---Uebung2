@@ -211,8 +211,11 @@ public class PlayerMovement : MonoBehaviour {
             }
         }else
         {
-            
-            GameManager.Instance.playerDied(playerNumber);
+            if (GameManager.Instance)
+            {
+                GameManager.Instance.playerDied(playerNumber);
+            }
+           
         }
         lastVelocity = rb.velocity.magnitude;
 
@@ -341,12 +344,19 @@ public class PlayerMovement : MonoBehaviour {
     private void UpdateManna()
     {
         currentManna = Mathf.Clamp(currentManna + mannaRegeneration * Time.deltaTime, 0f, (float)maxManna);
-        UIController.Instance.UpdateMannaBar(playerNumber, (int)currentManna);
+        if (UIController.Instance)
+        {
+            UIController.Instance.UpdateMannaBar(playerNumber, (int)currentManna);
+        }
+       
     }
     private void UpdateHealth()
     {
         if (currentHealth > maxHealth) currentHealth = maxHealth;
-        UIController.Instance.UpdateHealthBar(playerNumber, (int)currentHealth);
+        if (UIController.Instance)
+        {
+            UIController.Instance.UpdateHealthBar(playerNumber, (int)currentHealth);
+        }
     }
 
 

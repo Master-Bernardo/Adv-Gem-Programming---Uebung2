@@ -491,8 +491,8 @@ MonoBehaviour:
   timeAfterWhichAimerDissapears: 3
   playerModel: {fileID: 1437653333150372}
   playerAnimator: {fileID: 95527160245556270}
-  dieSound: {fileID: 8300000, guid: 0c28f5df24ba9ab4591fc79878ec069c, type: 3}
-  damageSound: {fileID: 8300000, guid: 3e274c0b469c1ef41ab6e5eacc6a1ae5, type: 3}
+  dieSound: {fileID: 8300000, guid: be204f9fe51ec1341a4cf065772f24e8, type: 3}
+  damageSound: {fileID: 8300000, guid: 9c9b479769cbb6642b2fc5cf6e973040, type: 3}
   jumpSound:
   - {fileID: 8300000, guid: e04b1513a429efa4ca375479d1f6749a, type: 3}
   - {fileID: 8300000, guid: 1f26c99aa5c39c7469df09a9bea1b7f4, type: 3}

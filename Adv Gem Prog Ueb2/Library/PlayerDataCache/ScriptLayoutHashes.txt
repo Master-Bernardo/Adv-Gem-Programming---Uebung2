@@ -1,6 +1,6 @@
-WindowsStandalone
+iOS
 PlayerPath?
-D:/Design/UnityProjects/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Builds/Builds.exe
+I:/UnityProjects/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/ios Build
 SceneListBegin?
 Assets/scene1.unity
 SceneListEnd?

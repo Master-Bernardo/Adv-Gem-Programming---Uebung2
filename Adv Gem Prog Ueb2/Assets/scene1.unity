@@ -8196,7 +8196,7 @@ MonoBehaviour:
   camMain: {fileID: 1924593492}
   cam1: {fileID: 1459897847}
   cam2: {fileID: 1716237253}
-  distanceAbWannSplitscreen: 15
+  distanceAbWannSplitscreen: 12
 --- !u!114 &1924593495
 MonoBehaviour:
   m_ObjectHideFlags: 0

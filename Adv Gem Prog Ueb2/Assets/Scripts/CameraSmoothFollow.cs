@@ -2,6 +2,7 @@
 
 public class CameraSmoothFollow : MonoBehaviour {
 
+    [SerializeField]
     private Transform target;
     [SerializeField]
     private float smoothSpeed ;  // the higher, the faster the camera will follow
