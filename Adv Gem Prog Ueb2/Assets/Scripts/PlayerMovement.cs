@@ -213,7 +213,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (GameManager.Instance)
             {
-                GameManager.Instance.playerDied(playerNumber);
+                GameManager.Instance.PlayerDied(playerNumber);
             }
            
         }

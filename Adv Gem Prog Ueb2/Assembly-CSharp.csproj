@@ -159,8 +159,20 @@
     <Reference Include="com.unity.2d.spriteshape.Editor">
       <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/com.unity.2d.spriteshape.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.StandardEvents">
+      <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEngineBridge.001">
+      <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.2d.common.Runtime">
+      <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/com.unity.2d.common.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.2d.spriteshape.Runtime">
       <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/com.unity.2d.spriteshape.Runtime.dll</HintPath>
@@ -168,23 +180,11 @@
     <Reference Include="Unity.TextMeshPro">
       <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="com.unity.2d.common.Editor">
       <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/com.unity.2d.common.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="com.unity.2d.common.Runtime">
-      <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/com.unity.2d.common.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
       <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InternalAPIEngineBridge.001">
-      <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>E:/UnityProjects/Old/Adv Game Programming/adv-Gem-pro-Ueb2/Adv Gem Prog Ueb2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.1.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

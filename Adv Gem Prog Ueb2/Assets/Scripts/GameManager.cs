@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator BeginnRoundDelayed()
     {
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(6.5f);
         BeginnRound();
     }
 
@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour {
         EndRound();
     }
 
-    public void playerDied(int playerNumber)
+    public void PlayerDied(int playerNumber)
     {
         if (playerNumber == 1) player1Alive = false;
         else if (playerNumber == 2) player2Alive = false;

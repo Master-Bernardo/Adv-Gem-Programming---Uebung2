@@ -72,9 +72,10 @@ public class UIController : MonoBehaviour
     public void PlayerWinsGame(int playerNumber)
     {
         roundStartEndText.SetActive(true);
-        roundStartEndText.GetComponent<Text>().fontSize = 15;
-        if (playerNumber == 1) roundStartEndText.GetComponent<Text>().text = "Player 1 Wins, hit t to restart";
-        else if (playerNumber == 2) roundStartEndText.GetComponent<Text>().text = "Player 2 Wins, hit t to restart";
+        roundStartEndText.GetComponent<Text>().fontSize = 21;
+        if (playerNumber == 1) roundStartEndText.GetComponent<Text>().text = "Player 1 Wins, hit r to restart, esc to go back";
+        else if (playerNumber == 2) roundStartEndText.GetComponent<Text>().text = "Player 2 Wins, hit r to restart, esc to go back";
+        StopCoroutine("HideRoundText");
     }
 
     IEnumerator HideRoundText()

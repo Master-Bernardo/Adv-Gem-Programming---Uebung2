@@ -6039,9 +6039,9 @@ MonoBehaviour:
   mainCamera: {fileID: 1924593489}
   player1Camera: {fileID: 1459897844}
   player2Camera: {fileID: 1716237249}
-  roundEndsSound: {fileID: 8300000, guid: 7c113e34b0462b946b1de83dc9e89300, type: 3}
-  winGameSound: {fileID: 8300000, guid: 4f1210948623ddd4ba5e2bf61b781acc, type: 3}
-  roundStartsSound: {fileID: 8300000, guid: a7f15645f13640d478d724e7d430dcbe, type: 3}
+  roundEndsSound: {fileID: 8300000, guid: d82bf5d94e0375f48b8c2c2dd5ad7051, type: 3}
+  winGameSound: {fileID: 8300000, guid: b58f2aec9e0b2f540ba73d10452fae10, type: 3}
+  roundStartsSound: {fileID: 8300000, guid: e556c8ff1a9632e43a203af6033c279b, type: 3}
 --- !u!4 &1428935390
 Transform:
   m_ObjectHideFlags: 0
@@ -6191,6 +6191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaec01e634fc2b4449244479dd692c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   smoothSpeed: 4
   offsetY: 4
 --- !u!124 &1459897846
@@ -6596,6 +6597,7 @@ GameObject:
   - component: {fileID: 1555430249}
   - component: {fileID: 1555430251}
   - component: {fileID: 1555430250}
+  - component: {fileID: 1555430252}
   m_Layer: 5
   m_Name: roundText
   m_TagString: Untagged
@@ -6660,6 +6662,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1555430248}
+--- !u!114 &1555430252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555430248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &1562287609
 Prefab:
   m_ObjectHideFlags: 0
@@ -7294,6 +7310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaec01e634fc2b4449244479dd692c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   smoothSpeed: 4
   offsetY: 4
 --- !u!114 &1716237251
