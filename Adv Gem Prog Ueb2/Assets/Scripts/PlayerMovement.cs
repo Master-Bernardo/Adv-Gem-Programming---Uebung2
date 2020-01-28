@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     public string attack_a_KEY;
     public string steerAimLeft_KEY;
     public string steerAimRight_KEY;
+    public string steerAimReset_KEY;
 
     //Movemetn
     [Space(10)]
@@ -121,12 +122,14 @@ public class PlayerMovement : MonoBehaviour {
                 playerAnimator.SetBool("isInAir", false);
             }
 
+            playerAnimator.SetBool("isRunning", false);
+
             //get KEy inputs for movement and Gameplay
             if (Input.GetButtonDown(jump_KEY) && grounded)
             {
                 wantToJump = true;
             }
-            else if (Input.GetButton(runRight_KEY) && grounded)
+            if (Input.GetButton(runRight_KEY) && grounded)
             {
                 moveR = true;
                 playerAnimator.SetBool("isRunning", true);
@@ -138,7 +141,7 @@ public class PlayerMovement : MonoBehaviour {
                 transform.localScale = new Vector3(1, 1, 1); //turns the player right
                 playerAnimator.SetBool("isRunning", false);
             }
-            else if (Input.GetButton(runLeft_KEY) && grounded)
+            if (Input.GetButton(runLeft_KEY) && grounded)
             {
                 moveL = true;
                 playerAnimator.SetBool("isRunning", true);
@@ -150,10 +153,8 @@ public class PlayerMovement : MonoBehaviour {
                 transform.localScale = new Vector3(-1, 1, 1); //turns the player right
                 playerAnimator.SetBool("isRunning", false);
             }
-            else
-            {
-                playerAnimator.SetBool("isRunning", false);
-            }
+
+            //if(!moveL && !moveR && grounded) 
 
             //Check facing for aimer object
 
@@ -193,6 +194,11 @@ public class PlayerMovement : MonoBehaviour {
             {
                 if(transform.localScale == new Vector3(1, 1, 1)) AimRight();
                 else AimLeft();
+                timeSinceNodAimerKeyWasPressed = 0f;
+            }
+            else if (Input.GetButton(steerAimReset_KEY))
+            {
+                ResetAim();
                 timeSinceNodAimerKeyWasPressed = 0f;
             }
             else
@@ -429,6 +435,14 @@ public class PlayerMovement : MonoBehaviour {
 
         //disable effect after 1 second
         //StartCoroutine("MakeAimHelperDissapear");
+    }
+
+    private void ResetAim()
+    {
+        //enable effect
+        aimObject.transform.GetChild(0).gameObject.SetActive(true);
+        //rotate aimer empthy Object
+        aimObject.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
     }
 
    private void HideAimer()

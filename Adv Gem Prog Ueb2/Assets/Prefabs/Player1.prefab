@@ -473,6 +473,7 @@ MonoBehaviour:
   attack_a_KEY: Attack_a1
   steerAimLeft_KEY: steerAimLeft1
   steerAimRight_KEY: steerAimRight1
+  steerAimReset_KEY: steerAimReset1
   maxSpeed: 8
   movementForce: 15
   jumpForce: 60

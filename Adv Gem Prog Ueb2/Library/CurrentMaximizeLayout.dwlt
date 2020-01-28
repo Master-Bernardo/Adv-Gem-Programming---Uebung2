@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 471}
   m_MaxSize: {x: 18008, y: 14021}
   vertical: 0
-  controlID: 2007
+  controlID: 7805
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 471}
   m_MaxSize: {x: 14006, y: 14021}
   vertical: 0
-  controlID: 2008
+  controlID: 7806
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 471}
   m_MaxSize: {x: 10002, y: 14021}
   vertical: 1
-  controlID: 2030
+  controlID: 7711
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -199,23 +199,23 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e43d0000
-    m_LastClickedID: 15844
-    m_ExpandedIDs: 5eecffff70edfffff0fbffff00000000ee3c0000
+    m_SelectedIDs: 6a790000
+    m_LastClickedID: 31082
+    m_ExpandedIDs: b658fbff0442fcffb24cfcff60c4fcff90c4fcff98c4fcffa6c4fcff5eecffff70edfffff0fbffff00000000ee3c00001a7800006a7800007a780000ce7800006a790000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Canvas
-      m_OriginalName: Canvas
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 15598
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 5}
     m_SearchString: 
@@ -243,8 +243,8 @@ MonoBehaviour:
     y: 590
     width: 583
     height: 717
-  m_MinSize: {x: 232, y: 271}
-  m_MaxSize: {x: 10002, y: 10021}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -288,11 +288,11 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets
+    - Assets/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets
+  - Assets/Prefabs
   m_LastFoldersGridSize: 96
   m_LastProjectPath: E:\UnityProjects\Old\Adv Game Programming\adv-Gem-pro-Ueb2\Adv
     Gem Prog Ueb2
@@ -300,8 +300,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: f80a0000
-    m_LastClickedID: 2808
+    m_SelectedIDs: d60c0000
+    m_LastClickedID: 3286
     m_ExpandedIDs: 00000000f80a0000040c0000d60c0000083500000a3500000c35000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -355,9 +355,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: e43d0000
-    m_LastClickedInstanceID: 15844
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 6a790000
+    m_LastClickedInstanceID: 31082
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 00000000322800007428000056dffdffbe4cfdff322f00004c4900009a0a0000fe0b0000e8bac1ff24390000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -430,10 +430,10 @@ MonoBehaviour:
     y: 0
     width: 1510
     height: 1307
-  m_MinSize: {x: 204, y: 442}
-  m_MaxSize: {x: 4004, y: 8042}
+  m_MinSize: {x: 204, y: 421}
+  m_MaxSize: {x: 4004, y: 8021}
   vertical: 1
-  controlID: 2009
+  controlID: 7807
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -487,14 +487,14 @@ MonoBehaviour:
     height: 631
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 11955.2104256
+  lastFramingTime: 2056.8159722
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 123.64197, y: 31.441036, z: 14.5}
+    m_Target: {x: 778.66394, y: 349.2984, z: -8.25}
     speed: 2
-    m_Value: {x: 123.64197, y: 31.441036, z: 14.5}
+    m_Value: {x: 778.66394, y: 349.2984, z: -8.25}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -526,9 +526,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 272.5031
+    m_Target: 833.5011
     speed: 2
-    m_Value: 272.5031
+    m_Value: 833.5011
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -642,8 +642,8 @@ MonoBehaviour:
     y: 652
     width: 1510
     height: 655
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -678,7 +678,7 @@ MonoBehaviour:
   m_AnimEditor: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 15782
+  m_LastSelectedObjectID: 31082
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
