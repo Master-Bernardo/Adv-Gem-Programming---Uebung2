@@ -2334,7 +2334,7 @@ MonoBehaviour:
   steerAimRight_KEY: steerAimRight1
   steerAimReset_KEY: steerAimReset1
   maxSpeed: 8
-  movementForce: 15
+  maxAcceleration: 200
   jumpForce: 60
   rb: {fileID: 50894990897359202}
   maxHealth: 100
@@ -2378,7 +2378,7 @@ MonoBehaviour:
   steerAimRight_KEY: steerAimRight2
   steerAimReset_KEY: steerAimReset2
   maxSpeed: 8
-  movementForce: 15
+  maxAcceleration: 200
   jumpForce: 60
   rb: {fileID: 50070627048043848}
   maxHealth: 100

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 public class UIController : MonoBehaviour
 {
@@ -33,13 +33,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void Update()
-    {
-        if (Input.GetKey(KeyCode.T))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
+   
 
     public void UpdatePlayerPoints(int playerNumber, int points)
     {

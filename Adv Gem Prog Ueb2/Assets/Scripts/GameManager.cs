@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -63,6 +64,23 @@ public class GameManager : MonoBehaviour {
     {
         INGAME,
         GAMEOVER
+    }
+
+    public void Update()
+    {
+        if(state == State.GAMEOVER)
+        {
+            if (Input.GetKey(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
+        }
+
     }
 
     private void BeginnRound()

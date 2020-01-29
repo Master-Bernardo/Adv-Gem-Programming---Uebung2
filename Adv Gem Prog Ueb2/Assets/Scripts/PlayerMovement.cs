@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Movement Values")]
     public float maxSpeed;
     [Tooltip("Speed with which we accelerate to the sides")]
-    public float movementForce;
+    public float maxAcceleration;
     [Tooltip("Speed with which we accelerate upwards")]
     public float jumpForce;
     public Rigidbody2D rb;
@@ -211,10 +211,10 @@ public class PlayerMovement : MonoBehaviour {
             }
 
             //for Debugging
-            if (Input.GetKeyDown(KeyCode.R))
+            /*if (Input.GetKeyDown(KeyCode.R))
             {
                 GetDamage(50);
-            }
+            }*/
         }else
         {
             if (GameManager.Instance)
@@ -245,7 +245,7 @@ public class PlayerMovement : MonoBehaviour {
         
         if (collision.transform.tag == "WindsBlock")
         {
-            grounded = true;
+            grounded = false;
 
         }
     }
@@ -306,24 +306,95 @@ public class PlayerMovement : MonoBehaviour {
 
     private void MoveRight()
     {
-        if (grounded)
+        Vector2 rbHorizontalVelocity = new Vector3(rb.velocity.x, 0, 0);
+        Vector2 targetVelocity = Vector2.right * maxSpeed;
+
+        Vector2 deltaV = targetVelocity - rbHorizontalVelocity;
+
+        Vector2 accel = deltaV / Time.deltaTime;
+
+        if ((rbHorizontalVelocity + accel.normalized).sqrMagnitude > rbHorizontalVelocity.sqrMagnitude)
         {
-            if (rb.velocity.magnitude < maxSpeed) rb.AddForce(Vector2.right * movementForce * 1000);
-        }else// in air the movement speed is only half
-        {
-            if (rb.velocity.magnitude < maxSpeed) rb.AddForce(Vector2.right * movementForce/2 * 1000);
+            //Debug.Log("accelerate");
+            if (accel.sqrMagnitude > maxAcceleration * maxAcceleration)
+            {
+                if (grounded)
+                {
+                    accel = accel.normalized * maxAcceleration;
+                }
+                else
+                {
+                    accel = accel.normalized * maxAcceleration * 0.25f;
+                }
+            }
         }
+        else
+        {
+            //Debug.Log("deccelerate");
+            if (accel.sqrMagnitude > (maxAcceleration * 2) * (maxAcceleration * 2))
+                accel = accel.normalized * maxAcceleration*2;
+        }
+
+        rb.AddForce(accel, ForceMode2D.Impulse);
     }
 
     private void MoveLeft()
     {
-        if (grounded) {
-            if(rb.velocity.magnitude<maxSpeed)rb.AddForce((-Vector2.right) * movementForce * 1000);
-        }else
+        Vector2 rbHorizontalVelocity = new Vector3(rb.velocity.x, 0, 0);
+        Vector2 targetVelocity = Vector2.left * maxSpeed;
+
+        Vector2 deltaV = targetVelocity - rbHorizontalVelocity;
+
+        Vector2 accel = deltaV / Time.deltaTime;
+
+        if ((rbHorizontalVelocity + accel.normalized).sqrMagnitude > rbHorizontalVelocity.sqrMagnitude)
         {
-            if (rb.velocity.magnitude < maxSpeed) rb.AddForce(-Vector2.right * movementForce / 2 * 1000);
+            //Debug.Log("accelerate");
+            if (accel.sqrMagnitude > maxAcceleration * maxAcceleration)
+            {
+                if (grounded)
+                {
+                    accel = accel.normalized * maxAcceleration;
+                }
+                else
+                {
+                    accel = accel.normalized * maxAcceleration*0.25f;
+                }
+            }
+                
+
+               
         }
+        else
+        {
+            //Debug.Log("deccelerate");
+            if (accel.sqrMagnitude > (maxAcceleration*2) * (maxAcceleration*2))
+                accel = accel.normalized * maxAcceleration*2;
+        }
+
+        rb.AddForce(accel, ForceMode2D.Impulse);
     }
+
+    /* private void MoveRight()
+     {
+         if (grounded)
+         {
+             if (rb.velocity.magnitude < maxSpeed) rb.AddForce(Vector2.right * movementForce * 1000);
+         }else// in air the movement speed is only half
+         {
+             if (rb.velocity.magnitude < maxSpeed) rb.AddForce(Vector2.right * movementForce/2 * 1000);
+         }
+     }
+
+     private void MoveLeft()
+     {
+         if (grounded) {
+             if(rb.velocity.magnitude<maxSpeed)rb.AddForce((-Vector2.right) * movementForce * 1000);
+         }else
+         {
+             if (rb.velocity.magnitude < maxSpeed) rb.AddForce(-Vector2.right * movementForce / 2 * 1000);
+         }
+     }*/
 
     public void GetDamage(int damage)
 
@@ -455,7 +526,7 @@ public class PlayerMovement : MonoBehaviour {
         audioSource.clip = drinkPotionSound;
         audioSource.Play();
         maxSpeed *= 2;
-        movementForce *= 2;
+        maxAcceleration *= 2;
         playerAnimator.SetTrigger("getPowerUp");
         StartCoroutine("GoBackToNormal");
         physicsBoostActive = true;
@@ -465,7 +536,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         yield return new WaitForSeconds(7f);
         maxSpeed /= 2;
-        movementForce /= 2;
+        maxAcceleration /= 2;
         physicsBoostActive = false;
     }
 

@@ -688,7 +688,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: afae3e6be2bcfe34d9aeecff8d86aa37, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 579696827e10d614bbe12576d98d528c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -11335,7 +11335,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 2a4884c5414241142b2ec7bd87c03398, type: 3}
     m_FontSize: 91
     m_FontStyle: 0
     m_BestFit: 0
@@ -11478,12 +11478,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 53
+    m_Font: {fileID: 12800000, guid: 2a4884c5414241142b2ec7bd87c03398, type: 3}
+    m_FontSize: 76
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 77
+    m_MaxSize: 89
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -11672,7 +11672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 182, y: -75.00001}
+  m_AnchoredPosition: {x: 198, y: -75.00001}
   m_SizeDelta: {x: 182.44, y: 51.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033618523
@@ -17258,7 +17258,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 2a4884c5414241142b2ec7bd87c03398, type: 3}
     m_FontSize: 91
     m_FontStyle: 0
     m_BestFit: 0
@@ -22955,7 +22955,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 182, y: -75}
+  m_AnchoredPosition: {x: 198, y: -75}
   m_SizeDelta: {x: 182.44, y: 51.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2146781040
